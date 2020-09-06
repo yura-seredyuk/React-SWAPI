@@ -1,10 +1,17 @@
-import React from 'react-dom'
-import './spinner.css'
+import React from 'react';
+import './spinner.css';
 
 const Spinner = () =>{
     return (
         <div className='d-flex justify-content-center'>
-
+            <div className="loadingio-spinner-double-ring-kzhe655f5cl">
+                <div className="ldio-e8qjfbgzagp">
+                    <div></div>
+                    <div></div>
+                    <div><div></div></div>
+                    <div><div></div></div>
+                </div>
+            </div>
         </div>
     )
 }

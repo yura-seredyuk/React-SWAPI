@@ -20,3 +20,6 @@
 .planet-random .list-group .list-group-item:last-of-type{
     border-style: none;
 }
+.planet-random .list-group .list-group-item .tern{
+    margin-right: 5px;
+}

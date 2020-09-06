@@ -7,6 +7,9 @@ export default class PlanetRandom extends Component{
 
 
     render(){
+        // return(
+        //     <Spinner />
+        // )
         return(
             <div className='planet-random jumbotron rounded'>
                 <img 
@@ -15,12 +18,12 @@ export default class PlanetRandom extends Component{
                 />
                 <div>
                     <h4>Kashyyyc</h4>
-                    <ul className='list-group'>
-                        <li className='list-group-item'>
+                    <ul className="list-group">
+                        <li className="list-group-item">
                             <span className='tern'>Population</span>
                             <span>121212</span>
                         </li>
-                        <li className='list-group-item'>
+                        <li className="list-group-item">
                             <span className='tern'>Rotation period</span>
                             <span>12</span>
                         </li>
