@@ -4,30 +4,30 @@ export default class SwapiService {
       const res = await fetch(`${this.apiBase}${url}`);
       return await res.json();; 
     }
-    async getAllPeople(){
+    getAllPeople = async () =>{
       const n = await  this.getResourse('/people/');
-      return n;
+      return n.results.map(this.transformPeople);
     }
-    async getPeople(id){
-      const n = await this.getResourse(`/people/${id}`)
-      return n;
+    getPeople = async (id) =>{
+      const people = await this.getResourse(`/people/${id}`)
+      return this.transformPeople(people);
     }
-     getAllPlanets = async ()=>{
+    getAllPlanets = async ()=>{
       const n = await  this.getResourse('/planets/')
       return n.results.map(this.transformPlanet);
     }
-     getPlanet = async (id)=>{
+    getPlanet = async (id)=>{
       const planet = await  this.getResourse(`/planets/${id}`)
-      console.log(planet)
+      // console.log(planet)
       return this.transformPlanet(planet);
     }
-    async getAllStarships(){
+    getAllStarships = async () =>{
       const n = await  this.getResourse('/starships/')
-      return n;
+      return n.results.map(this.transformStarship);
     }
-    async getStarship(id){
-      const n = await  this.getResourse(`/starships/${id}`)
-      return n;
+    getStarship = async (id) =>{
+      const starship = await  this.getResourse(`/starships/${id}`)
+      return this.transformStarship(starship);
     }
     extractId(item){
       const regId = /\/([0-9]*)\/$/; //регулярний вираз
@@ -39,7 +39,43 @@ export default class SwapiService {
         name:planet.name,
         population:planet.population,
         rotationPeriod:planet.rotation_period,
-        diameter:planet.diameter
+        orbitalPeriod:planet.orbital_period,
+        diameter:planet.diameter,
+        gravity:planet.gravity,
+        terrain:planet.terrain,
+        surfaceWater:planet.surface_water,
+        climate:planet.climate
+      }
+    }
+    transformStarship = (starship) =>{
+      return{
+        id:this.extractId(starship),
+        name:starship.name,
+        model:starship.model,
+        manufacturer:starship.manufacturer,
+        class:starship.starship_class,
+        cost:starship.cost_in_credits,
+        speed:starship.max_atmosphering_speed,
+        hyperdriveRating:starship.hyperdrive_rating,
+        MGLT:starship.MGLT,
+        length:starship.length,
+        cargoCapacity:starship.cargo_capacity,
+        mimimumCrew:starship.crew,
+        passengers:starship.passengers
+      }
+    }
+    transformPeople = (people) =>{
+      return{
+        id:this.extractId(people),
+        name:people.name,
+        birthYear:people.birth_year,
+        species:people.species,
+        height:people.height,
+        mass:people.mass,
+        gender:people.gender,
+        hairColor:people.hair_color,
+        skinColor:people.skin_color,
+        homeworld:this.getPlanet(this.extractId(people)).name
       }
     }
   }
