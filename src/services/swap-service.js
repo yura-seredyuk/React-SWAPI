@@ -12,13 +12,14 @@ export default class SwapiService {
       const n = await this.getResourse(`/people/${id}`)
       return n;
     }
-    async getAllPlanets(){
+     getAllPlanets = async ()=>{
       const n = await  this.getResourse('/planets/')
-      return n;
+      return n.results.map(this.transformPlanet);
     }
-    async getPlanet(id){
-      const n = await  this.getResourse(`/planets/${id}`)
-      return n;
+     getPlanet = async (id)=>{
+      const planet = await  this.getResourse(`/planets/${id}`)
+      console.log(planet)
+      return this.transformPlanet(planet);
     }
     async getAllStarships(){
       const n = await  this.getResourse('/starships/')
@@ -28,11 +29,25 @@ export default class SwapiService {
       const n = await  this.getResourse(`/starships/${id}`)
       return n;
     }
+    extractId(item){
+      const regId = /\/([0-9]*)\/$/; //регулярний вираз
+      return item.url.match(regId)[1]; // витягування ідентифікатора з url адреси
+    }
+    transformPlanet = (planet) =>{
+      return{
+        id:this.extractId(planet),
+        name:planet.name,
+        population:planet.population,
+        rotationPeriod:planet.rotation_period,
+        diameter:planet.diameter
+      }
+    }
   }
-  const people = new SwapiService();
-  people.getAllPeople(2).then((body)=>{
-    console.log(people)
-  })
+
+  // const people = new SwapiService();
+  // people.getAllPeople(2).then((body)=>{
+  //   console.log(people)
+  // })
   // const getResourse = async (url)=>{
   //   const res = await fetch(url);
   //   const body = await res.json();
