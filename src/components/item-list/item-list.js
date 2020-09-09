@@ -8,7 +8,7 @@ export default class ItemList extends Component{
 
     state = {
         planetList:null,
-        planetArr:null
+        list:null
     };
     componentDidMount(){
         this.swapiService.getAllPlanets()
@@ -17,7 +17,7 @@ export default class ItemList extends Component{
         })
         .then(()=>{
             this.setState({
-                planetArr:this.state.planetList.map((item)=>{
+                list:this.state.planetList.map((item)=>{
                     return(
                         <li className="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
                             key = {item.id}
@@ -41,7 +41,7 @@ export default class ItemList extends Component{
                 <li className="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                     R2-D2
                 </li> */}
-                {this.state.planetArr}
+                {this.state.list}
             </ul>
         )
     }
