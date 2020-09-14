@@ -53,7 +53,7 @@ export default class SwapiService {
         name:starship.name,
         model:starship.model,
         manufacturer:starship.manufacturer,
-        class:starship.starship_class,
+        clas:starship.starship_class,
         cost:starship.cost_in_credits,
         speed:starship.max_atmosphering_speed,
         hyperdriveRating:starship.hyperdrive_rating,
@@ -69,13 +69,11 @@ export default class SwapiService {
         id:this.extractId(people),
         name:people.name,
         birthYear:people.birth_year,
-        species:people.species,
         height:people.height,
         mass:people.mass,
         gender:people.gender,
         hairColor:people.hair_color,
         skinColor:people.skin_color,
-        homeworld:this.getPlanet(this.extractId(people)).name
       }
     }
   }
